@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprint AI - Internal AI Automation for Belgian Enterprises</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-sprint-blue: #0066FF;
+            --color-electric: #00F0FF;
+            --color-dark: #0A0E1A;
+            --color-charcoal: #1A1F2E;
+            --color-silver: #A8B2D1;
+            --color-white: #FFFFFF;
+            --color-success: #28A745;
+
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'Work Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-dark);
+            color: var(--color-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Background animation */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.03;
+            background-image:
+                linear-gradient(var(--color-sprint-blue) 1px, transparent 1px),
+                linear-gradient(90deg, var(--color-sprint-blue) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 102, 255, 0.2);
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            color: var(--color-white);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-sprint {
+            color: var(--color-sprint-blue);
+        }
+
+        .logo-ai {
+            color: var(--color-electric);
+        }
+
+        .nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav a {
+            color: var(--color-silver);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav a:hover {
+            color: var(--color-electric);
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-electric);
+            transition: width 0.3s;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--color-sprint-blue);
+            color: var(--color-white);
+            padding: 0.75rem 1.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--color-sprint-blue);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--color-sprint-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-text .highlight {
+            color: var(--color-sprint-blue);
+        }
+
+        .hero-text .highlight-2 {
+            color: var(--color-electric);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--color-silver);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 3rem auto;
+        }
+
+        .stat {
+            border-left: 3px solid var(--color-sprint-blue);
+            padding-left: 1rem;
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--color-electric);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--color-silver);
+            font-size: 0.95rem;
+        }
+
+        .hero-cta {
+            margin-top: 3rem;
+        }
+
+        .hero-cta .cta-button {
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        /* Hero Visual - Animated Blocks */
+        .hero-visual {
+            position: relative;
+            height: 400px;
+            margin-top: 3rem;
+        }
+
+        .sprint-track {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .track-lane {
+            position: absolute;
+            left: 0;
+            height: 50px;
+            background: rgba(0, 102, 255, 0.1);
+            border-left: 4px solid var(--color-sprint-blue);
+            border-right: 4px solid var(--color-sprint-blue);
+            animation: trackSlide 3s ease-in-out infinite;
+        }
+
+        .track-lane:nth-child(1) { top: 40px; animation-delay: 0s; }
+        .track-lane:nth-child(2) { top: 120px; animation-delay: 0.2s; }
+        .track-lane:nth-child(3) { top: 200px; animation-delay: 0.4s; }
+        .track-lane:nth-child(4) { top: 280px; animation-delay: 0.6s; }
+
+        @keyframes trackSlide {
+            0%, 100% { width: 60%; opacity: 0.3; }
+            50% { width: 100%; opacity: 0.6; }
+        }
+
+        .runner-icon {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 8rem;
+            color: var(--color-electric);
+            animation: runnerPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes runnerPulse {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.1); }
+        }
+
+        /* Section Styling */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 5rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-silver);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Use Cases Grid */
+        .use-cases-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .use-case-card {
+            background: var(--color-charcoal);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            border-radius: 8px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .use-case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-sprint-blue), var(--color-electric));
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-sprint-blue);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .use-case-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .use-case-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-electric);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .use-case-description {
+            color: var(--color-silver);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .use-case-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(168, 178, 209, 0.2);
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--color-success);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--color-silver);
+        }
+
+        .use-case-savings {
+            background: rgba(0, 102, 255, 0.1);
+            border-left: 3px solid var(--color-sprint-blue);
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .savings-label {
+            font-size: 0.85rem;
+            color: var(--color-silver);
+            margin-bottom: 0.5rem;
+        }
+
+        .savings-value {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-white);
+        }
+
+        /* Download Button on Cards */
+        .download-btn {
+            display: block;
+            width: 100%;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            color: var(--color-electric);
+            border: 2px solid var(--color-electric);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            background: var(--color-electric);
+            color: var(--color-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ROI Callout */
+        .roi-callout {
+            background: linear-gradient(135deg, var(--color-sprint-blue), var(--color-electric));
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 4rem auto 0;
+        }
+
+        .roi-callout h3 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-dark);
+        }
+
+        .roi-callout p {
+            font-size: 1.2rem;
+            color: var(--color-dark);
+            margin-bottom: 2rem;
+        }
+
+        .roi-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .roi-stat {
+            text-align: center;
+        }
+
+        .roi-stat-value {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--color-dark);
+            display: block;
+        }
+
+        .roi-stat-label {
+            font-size: 1rem;
+            color: var(--color-dark);
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--color-charcoal);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .about-text p {
+            color: var(--color-silver);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-highlights {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .highlight-icon {
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .highlight-text h4 {
+            color: var(--color-electric);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .highlight-text p {
+            color: var(--color-silver);
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--color-dark);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .contact-content p {
+            font-size: 1.2rem;
+            color: var(--color-silver);
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: var(--color-charcoal);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 102, 255, 0.2);
+        }
+
+        .contact-item-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item-label {
+            font-size: 0.9rem;
+            color: var(--color-silver);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item-value {
+            color: var(--color-electric);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .contact-item-value a {
+            color: var(--color-electric);
+            text-decoration: none;
+        }
+
+        .contact-item-value a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 102, 255, 0.2);
+        }
+
+        footer p {
+            color: var(--color-silver);
+            font-size: 0.9rem;
+        }
+
+        /* Email Gate Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 26, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--color-charcoal);
+            border: 1px solid rgba(0, 102, 255, 0.4);
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 460px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.2);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--color-silver);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--color-white);
+        }
+
+        .modal h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--color-electric);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .modal p {
+            color: var(--color-silver);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-form input[type="email"] {
+            padding: 0.85rem 1rem;
+            background: var(--color-dark);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 4px;
+            color: var(--color-white);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .modal-form input[type="email"]:focus {
+            border-color: var(--color-electric);
+        }
+
+        .modal-form input[type="email"]::placeholder {
+            color: rgba(168, 178, 209, 0.5);
+        }
+
+        .modal-form button {
+            padding: 0.85rem 1.5rem;
+            background: var(--color-sprint-blue);
+            color: var(--color-white);
+            border: 2px solid var(--color-sprint-blue);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-form button:hover {
+            background: transparent;
+            color: var(--color-sprint-blue);
+        }
+
+        .modal-form button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .modal-message {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .modal-message.success {
+            color: var(--color-success);
+        }
+
+        .modal-message.error {
+            color: #ff4444;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                height: 300px;
+            }
+
+            .runner-icon {
+                font-size: 5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <header>
+        <div class="logo">
+            <span class="logo-sprint">SPRINT</span>
+            <span class="logo-ai">AI</span>
+        </div>
+        <nav class="nav">
+            <a onclick="scrollToSection('hero')">Home</a>
+            <a onclick="scrollToSection('use-cases')">Use Cases</a>
+            <a onclick="scrollToSection('about')">About</a>
+            <a onclick="scrollToSection('contact')" class="cta-button">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    <span class="highlight">INTERNAL AI AUTOMATION</span>
+                    <span class="highlight-2">FOR BELGIAN ENTERPRISES</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Save &euro;200K-500K/year by automating repetitive tasks. Production knowledge, helpdesk, documents, customer service. Built in 6-8 weeks.
+                </p>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">154-623%</span>
+                    <span class="stat-label">Customer IRR</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">4-11 mo</span>
+                    <span class="stat-label">Payback Period</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">6-8 wk</span>
+                    <span class="stat-label">Implementation</span>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a onclick="scrollToSection('contact')" class="cta-button">Get Started</a>
+            </div>
+
+            <!-- Animated Sprint Track -->
+            <div class="hero-visual">
+                <div class="sprint-track">
+                    <div class="track-lane"></div>
+                    <div class="track-lane"></div>
+                    <div class="track-lane"></div>
+                    <div class="track-lane"></div>
+                </div>
+                <div class="runner-icon">&#9889;</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="highlight">4 PROVEN</span> USE CASES
+            </h2>
+            <p class="section-subtitle">
+                Every use case delivers exceptional returns with &gt;100% IRR and &lt;12 month payback&mdash;exceeding CFO approval thresholds.
+            </p>
+        </div>
+
+        <div class="use-cases-grid">
+            <!-- Use Case 1: Production Knowledge -->
+            <div class="use-case-card">
+                <div class="use-case-icon">&#9881;&#65039;</div>
+                <h3 class="use-case-title">PRODUCTION KNOWLEDGE ASSISTANT</h3>
+                <p class="use-case-description">
+                    Production operators waste 15 minutes per question searching SOPs and manuals. Our AI assistant answers in 10 seconds&mdash;right from their phone on the production floor.
+                </p>
+
+                <div class="use-case-savings">
+                    <div class="savings-label">Typical Annual Savings</div>
+                    <div class="savings-value">&euro;250K-600K/year</div>
+                </div>
+
+                <div class="use-case-metrics">
+                    <div class="metric">
+                        <span class="metric-value">300-600%</span>
+                        <span class="metric-label">IRR Range</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">4-6 mo</span>
+                        <span class="metric-label">Payback</span>
+                    </div>
+                </div>
+
+                <button class="download-btn" onclick="openDownloadModal('bc1-production-knowledge')">
+                    Download Business Case &rarr;
+                </button>
+            </div>
+
+            <!-- Use Case 2: HR/IT Helpdesk -->
+            <div class="use-case-card">
+                <div class="use-case-icon">&#128172;</div>
+                <h3 class="use-case-title">HR & IT HELPDESK AUTOMATION</h3>
+                <p class="use-case-description">
+                    60-70% of HR/IT tickets are repetitive questions. Employees get instant answers while your team focuses on strategic work instead of password resets.
+                </p>
+
+                <div class="use-case-savings">
+                    <div class="savings-label">Typical Annual Savings</div>
+                    <div class="savings-value">&euro;120K-400K/year</div>
+                </div>
+
+                <div class="use-case-metrics">
+                    <div class="metric">
+                        <span class="metric-value">200-300%</span>
+                        <span class="metric-label">IRR Range</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">7-9 mo</span>
+                        <span class="metric-label">Payback</span>
+                    </div>
+                </div>
+
+                <button class="download-btn" onclick="openDownloadModal('bc2-hr-it-helpdesk')">
+                    Download Business Case &rarr;
+                </button>
+            </div>
+
+            <!-- Use Case 3: Document Processing -->
+            <div class="use-case-card">
+                <div class="use-case-icon">&#128196;</div>
+                <h3 class="use-case-title">DOCUMENT PROCESSING</h3>
+                <p class="use-case-description">
+                    Manual data entry from invoices, forms, and reports takes hours. AI extracts data automatically&mdash;90% faster with higher accuracy than humans.
+                </p>
+
+                <div class="use-case-savings">
+                    <div class="savings-label">Typical Annual Savings</div>
+                    <div class="savings-value">&euro;80K-300K/year</div>
+                </div>
+
+                <div class="use-case-metrics">
+                    <div class="metric">
+                        <span class="metric-value">150-250%</span>
+                        <span class="metric-label">IRR Range</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">10-12 mo</span>
+                        <span class="metric-label">Payback</span>
+                    </div>
+                </div>
+
+                <button class="download-btn" onclick="openDownloadModal('bc3-document-processing')">
+                    Download Business Case &rarr;
+                </button>
+            </div>
+
+            <!-- Use Case 4: Customer Service -->
+            <div class="use-case-card">
+                <div class="use-case-icon">&#127919;</div>
+                <h3 class="use-case-title">CUSTOMER SERVICE AUTOMATION</h3>
+                <p class="use-case-description">
+                    Call centers spend 8-10 minutes per inquiry on repetitive questions. AI handles 60-80% of inquiries instantly, improving satisfaction and reducing costs.
+                </p>
+
+                <div class="use-case-savings">
+                    <div class="savings-label">Typical Annual Savings</div>
+                    <div class="savings-value">&euro;200K-600K/year</div>
+                </div>
+
+                <div class="use-case-metrics">
+                    <div class="metric">
+                        <span class="metric-value">250-350%</span>
+                        <span class="metric-label">IRR Range</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">6-8 mo</span>
+                        <span class="metric-label">Payback</span>
+                    </div>
+                </div>
+
+                <button class="download-btn" onclick="openDownloadModal('bc4-customer-service')">
+                    Download Business Case &rarr;
+                </button>
+            </div>
+        </div>
+
+        <!-- ROI Callout -->
+        <div class="roi-callout">
+            <h3>EXCEPTIONAL FINANCIAL RETURNS</h3>
+            <p>All use cases exceed CFO approval thresholds</p>
+            <div class="roi-stats">
+                <div class="roi-stat">
+                    <span class="roi-stat-value">&euro;280K-1.5M</span>
+                    <span class="roi-stat-label">Net Profit (3 years)</span>
+                </div>
+                <div class="roi-stat">
+                    <span class="roi-stat-value">&euro;88K-1.1M</span>
+                    <span class="roi-stat-label">NPV Range</span>
+                </div>
+                <div class="roi-stat">
+                    <span class="roi-stat-value">&gt;100%</span>
+                    <span class="roi-stat-label">All IRRs</span>
+                </div>
+            </div>
+            <div style="margin-top: 2rem;">
+                <a onclick="scrollToSection('use-cases')" class="cta-button" style="display: inline-block; background: var(--color-dark); border-color: var(--color-dark);">
+                    Download Detailed Business Cases &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>
+                    <span class="highlight">WHY</span> SPRINT AI?
+                </h2>
+                <p>
+                    We're not another consultancy selling six-month studies. We're a Belgian app studio that builds production-ready AI applications in 6-8 weeks&mdash;with measurable ROI from day one.
+                </p>
+                <p>
+                    Founded by Tim Pauwels (MBA, Vlerick), we've built 21 AI applications for Belgian enterprises. We understand your operations, speak your language (NL/FR), and deliver fixed-price projects with guaranteed results.
+                </p>
+            </div>
+
+            <div class="about-highlights">
+                <div class="highlight-item">
+                    <div class="highlight-icon">&#9889;</div>
+                    <div class="highlight-text">
+                        <h4>Fast Delivery</h4>
+                        <p>6-8 weeks vs 6-12 months for traditional agencies</p>
+                    </div>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="highlight-icon">&#128176;</div>
+                    <div class="highlight-text">
+                        <h4>ROI-Focused</h4>
+                        <p>Every project includes savings projections and payback calculations</p>
+                    </div>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="highlight-icon">&#127919;</div>
+                    <div class="highlight-text">
+                        <h4>Fixed Pricing</h4>
+                        <p>No hourly billing, no scope creep, no surprises</p>
+                    </div>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="highlight-icon">&#128205;</div>
+                    <div class="highlight-text">
+                        <h4>Local & Accessible</h4>
+                        <p>Based in Belgium, we visit your facility in person</p>
+                    </div>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="highlight-icon">&#128274;</div>
+                    <div class="highlight-text">
+                        <h4>All-Inclusive Hosting</h4>
+                        <p>We handle infrastructure, maintenance, and support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2>
+                <span class="highlight">READY TO</span> START SAVING?
+            </h2>
+            <p>
+                Schedule a 30-minute discovery call to explore opportunities at your company. No obligation, no sales pitch&mdash;just a conversation about what's possible.
+            </p>
+
+            <div class="hero-cta">
+                <a href="mailto:tim@trainofthoughts.be" class="cta-button">Book Discovery Call</a>
+            </div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-item-icon">&#128231;</div>
+                    <div class="contact-item-label">Email</div>
+                    <div class="contact-item-value"><a href="mailto:tim@trainofthoughts.be">tim@trainofthoughts.be</a></div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">&#127760;</div>
+                    <div class="contact-item-label">Website</div>
+                    <div class="contact-item-value">sprint-ai.be</div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">&#128205;</div>
+                    <div class="contact-item-label">Location</div>
+                    <div class="contact-item-value">Belgium</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Sprint AI. All rights reserved. | Accelerating AI Innovation</p>
+    </footer>
+
+    <!-- Email Gate Modal -->
+    <div class="modal-overlay" id="downloadModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3>DOWNLOAD BUSINESS CASE</h3>
+            <p id="modalDescription">Enter your email and we'll send you the detailed business case with full ROI analysis.</p>
+            <form class="modal-form" onsubmit="handleDownload(event)">
+                <input type="email" id="modalEmail" placeholder="your@email.com" required>
+                <button type="submit" id="modalSubmit">Send me the Business Case</button>
+            </form>
+            <div class="modal-message" id="modalMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentBcId = null;
+
+        const BC_NAMES = {
+            'bc1-production-knowledge': 'Production Knowledge Assistant',
+            'bc2-hr-it-helpdesk': 'HR & IT Helpdesk Automation',
+            'bc3-document-processing': 'Document Processing Automation',
+            'bc4-customer-service': 'Customer Service Automation'
+        };
+
+        function openDownloadModal(bcId) {
+            currentBcId = bcId;
+            const name = BC_NAMES[bcId];
+            document.getElementById('modalDescription').textContent =
+                `Enter your email and we'll send you the "${name}" business case with full ROI analysis.`;
+            document.getElementById('modalEmail').value = '';
+            document.getElementById('modalMessage').textContent = '';
+            document.getElementById('modalMessage').className = 'modal-message';
+            document.getElementById('modalSubmit').disabled = false;
+            document.getElementById('downloadModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('downloadModal').classList.remove('active');
+            currentBcId = null;
+        }
+
+        // Close modal on overlay click
+        document.getElementById('downloadModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        async function handleDownload(e) {
+            e.preventDefault();
+            const email = document.getElementById('modalEmail').value.trim();
+            const msg = document.getElementById('modalMessage');
+            const btn = document.getElementById('modalSubmit');
+
+            if (!email) return;
+
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            msg.textContent = '';
+            msg.className = 'modal-message';
+
+            try {
+                const res = await fetch('/api/download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, businessCaseId: currentBcId })
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    msg.textContent = 'Check your inbox! The business case is on its way.';
+                    msg.className = 'modal-message success';
+                    btn.textContent = 'Sent!';
+                } else {
+                    throw new Error(data.error || 'Something went wrong');
+                }
+            } catch (err) {
+                msg.textContent = err.message || 'Failed to send. Please try again.';
+                msg.className = 'modal-message error';
+                btn.disabled = false;
+                btn.textContent = 'Send me the Business Case';
+            }
+        }
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Add highlight class to active nav item on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(function(section) {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav a').forEach(function(link) {
+                        link.style.color = '';
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
