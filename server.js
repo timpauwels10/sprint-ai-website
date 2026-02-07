@@ -75,8 +75,13 @@ app.post('/api/download', async (req, res) => {
   }
 });
 
-// Export leads as CSV
-app.get('/api/leads', (_req, res) => {
+// Export leads as CSV (token-protected)
+app.get('/api/leads', (req, res) => {
+  const token = req.query.token;
+  if (!token || token !== process.env.LEADS_TOKEN) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
   let leads = [];
   try { leads = JSON.parse(fs.readFileSync(LEADS_FILE, 'utf8')); } catch {}
 
