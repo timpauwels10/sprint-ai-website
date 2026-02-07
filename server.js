@@ -88,8 +88,7 @@ app.get('/api/leads', (req, res) => {
   const csv = 'email,businessCaseId,timestamp\n' +
     leads.map(l => `${l.email},${l.businessCaseId},${l.timestamp}`).join('\n');
 
-  res.setHeader('Content-Type', 'text/csv');
-  res.setHeader('Content-Disposition', 'attachment; filename=leads.csv');
+  res.setHeader('Content-Type', 'text/plain');
   res.send(csv);
 });
 
