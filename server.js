@@ -53,7 +53,7 @@ app.post('/api/download', async (req, res) => {
     const pdfBuffer = fs.readFileSync(pdfPath);
 
     await resend.emails.send({
-      from: 'Sprint AI <tim@trainofthoughts.be>',
+      from: 'Sprint AI <hello@sprint-ai.be>',
       to: email,
       subject: `Your Business Case: ${bc.name}`,
       html: `
