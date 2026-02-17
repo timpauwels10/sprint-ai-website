@@ -19,12 +19,14 @@
 
         :root {
             --color-sprint-blue: #0066FF;
-            --color-electric: #00F0FF;
-            --color-dark: #0A0E1A;
-            --color-charcoal: #1A1F2E;
-            --color-silver: #A8B2D1;
-            --color-white: #FFFFFF;
-            --color-success: #28A745;
+            --color-bright-blue: #1E90FF;
+            --color-light-blue: #4FC3F7;
+            --color-bg: #FFFFFF;
+            --color-bg-alt: #F0F6FF;
+            --color-text: #1E293B;
+            --color-text-secondary: #5A6B7F;
+            --color-border: #D6E4F0;
+            --color-success: #0F9D58;
 
             --font-display: 'Bebas Neue', sans-serif;
             --font-body: 'Work Sans', sans-serif;
@@ -32,8 +34,8 @@
 
         body {
             font-family: var(--font-body);
-            background: var(--color-dark);
-            color: var(--color-white);
+            background: var(--color-bg);
+            color: var(--color-text);
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -46,10 +48,10 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.03;
+            opacity: 0.04;
             background-image:
-                linear-gradient(var(--color-sprint-blue) 1px, transparent 1px),
-                linear-gradient(90deg, var(--color-sprint-blue) 1px, transparent 1px);
+                linear-gradient(var(--color-light-blue) 1px, transparent 1px),
+                linear-gradient(90deg, var(--color-light-blue) 1px, transparent 1px);
             background-size: 50px 50px;
             animation: gridMove 20s linear infinite;
         }
@@ -69,27 +71,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 14, 26, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 102, 255, 0.2);
+            border-bottom: 1px solid var(--color-border);
+            box-shadow: 0 2px 20px rgba(0, 102, 255, 0.06);
         }
 
         .logo {
             font-family: var(--font-display);
             font-size: 2.5rem;
             letter-spacing: 2px;
-            color: var(--color-white);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
         .logo-sprint {
-            color: var(--color-sprint-blue);
+            color: var(--color-text);
         }
 
         .logo-ai {
-            color: var(--color-electric);
+            color: var(--color-sprint-blue);
         }
 
         .nav {
@@ -99,7 +101,7 @@
         }
 
         .nav a {
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
@@ -108,7 +110,7 @@
         }
 
         .nav a:hover {
-            color: var(--color-electric);
+            color: var(--color-sprint-blue);
         }
 
         .nav a::after {
@@ -118,7 +120,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--color-electric);
+            background: var(--color-sprint-blue);
             transition: width 0.3s;
         }
 
@@ -128,7 +130,7 @@
 
         .cta-button {
             background: var(--color-sprint-blue);
-            color: var(--color-white);
+            color: #FFFFFF;
             padding: 0.75rem 1.75rem;
             border-radius: 4px;
             font-weight: 600;
@@ -174,12 +176,12 @@
         }
 
         .hero-text .highlight-2 {
-            color: var(--color-electric);
+            color: var(--color-bright-blue);
         }
 
         .hero-subtitle {
             font-size: 1.4rem;
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             margin-bottom: 2.5rem;
             font-weight: 300;
             max-width: 800px;
@@ -204,12 +206,12 @@
         .stat-number {
             font-family: var(--font-display);
             font-size: 3rem;
-            color: var(--color-electric);
+            color: var(--color-sprint-blue);
             display: block;
         }
 
         .stat-label {
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             font-size: 0.95rem;
         }
 
@@ -261,7 +263,7 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 8rem;
-            color: var(--color-electric);
+            color: var(--color-sprint-blue);
             animation: runnerPulse 2s ease-in-out infinite;
         }
 
@@ -291,7 +293,7 @@
 
         .section-subtitle {
             font-size: 1.2rem;
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             max-width: 700px;
             margin: 0 auto;
         }
@@ -306,13 +308,14 @@
         }
 
         .use-case-card {
-            background: var(--color-charcoal);
-            border: 1px solid rgba(0, 102, 255, 0.2);
+            background: #FFFFFF;
+            border: 1px solid var(--color-border);
             border-radius: 8px;
             padding: 2.5rem;
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 102, 255, 0.06);
         }
 
         .use-case-card::before {
@@ -322,13 +325,13 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--color-sprint-blue), var(--color-electric));
+            background: linear-gradient(90deg, var(--color-sprint-blue), var(--color-bright-blue));
         }
 
         .use-case-card:hover {
             transform: translateY(-5px);
             border-color: var(--color-sprint-blue);
-            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.15);
         }
 
         .use-case-icon {
@@ -339,13 +342,13 @@
         .use-case-title {
             font-family: var(--font-display);
             font-size: 2rem;
-            color: var(--color-electric);
+            color: var(--color-sprint-blue);
             margin-bottom: 1rem;
             letter-spacing: 1px;
         }
 
         .use-case-description {
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             margin-bottom: 1.5rem;
             line-height: 1.8;
         }
@@ -356,7 +359,7 @@
             gap: 1rem;
             margin-top: 1.5rem;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(168, 178, 209, 0.2);
+            border-top: 1px solid var(--color-border);
         }
 
         .metric {
@@ -372,7 +375,7 @@
 
         .metric-label {
             font-size: 0.85rem;
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
         }
 
         .use-case-savings {
@@ -385,14 +388,14 @@
 
         .savings-label {
             font-size: 0.85rem;
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             margin-bottom: 0.5rem;
         }
 
         .savings-value {
             font-family: var(--font-display);
             font-size: 1.5rem;
-            color: var(--color-white);
+            color: var(--color-text);
         }
 
         /* Download Button on Cards */
@@ -402,8 +405,8 @@
             margin-top: 1.5rem;
             padding: 0.75rem 1.5rem;
             background: transparent;
-            color: var(--color-electric);
-            border: 2px solid var(--color-electric);
+            color: var(--color-sprint-blue);
+            border: 2px solid var(--color-sprint-blue);
             border-radius: 4px;
             font-family: var(--font-body);
             font-size: 0.95rem;
@@ -414,14 +417,14 @@
         }
 
         .download-btn:hover {
-            background: var(--color-electric);
-            color: var(--color-dark);
+            background: var(--color-sprint-blue);
+            color: #FFFFFF;
             transform: translateY(-2px);
         }
 
         /* ROI Callout */
         .roi-callout {
-            background: linear-gradient(135deg, var(--color-sprint-blue), var(--color-electric));
+            background: linear-gradient(135deg, var(--color-sprint-blue), var(--color-bright-blue));
             padding: 3rem;
             border-radius: 8px;
             text-align: center;
@@ -433,12 +436,12 @@
             font-family: var(--font-display);
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: var(--color-dark);
+            color: #FFFFFF;
         }
 
         .roi-callout p {
             font-size: 1.2rem;
-            color: var(--color-dark);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
         }
 
@@ -456,19 +459,19 @@
         .roi-stat-value {
             font-family: var(--font-display);
             font-size: 3rem;
-            color: var(--color-dark);
+            color: #FFFFFF;
             display: block;
         }
 
         .roi-stat-label {
             font-size: 1rem;
-            color: var(--color-dark);
+            color: rgba(255, 255, 255, 0.9);
             font-weight: 600;
         }
 
         /* About Section */
         .about {
-            background: var(--color-charcoal);
+            background: var(--color-bg-alt);
         }
 
         .about-content {
@@ -488,7 +491,7 @@
         }
 
         .about-text p {
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
             line-height: 1.8;
@@ -511,19 +514,100 @@
         }
 
         .highlight-text h4 {
-            color: var(--color-electric);
+            color: var(--color-sprint-blue);
             margin-bottom: 0.5rem;
             font-size: 1.2rem;
         }
 
         .highlight-text p {
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             font-size: 0.95rem;
+        }
+
+        /* Team Section */
+        .team {
+            background: var(--color-bg);
+        }
+
+        .team-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .team-card {
+            background: #FFFFFF;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 102, 255, 0.06);
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-sprint-blue), var(--color-bright-blue));
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-sprint-blue);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.15);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-sprint-blue), var(--color-bright-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: #FFFFFF;
+        }
+
+        .team-name {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .team-role {
+            font-size: 1rem;
+            color: var(--color-sprint-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Contact Section */
         .contact {
-            background: var(--color-dark);
+            background: var(--color-bg-alt);
         }
 
         .contact-content {
@@ -541,7 +625,7 @@
 
         .contact-content p {
             font-size: 1.2rem;
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             margin-bottom: 3rem;
         }
 
@@ -554,9 +638,10 @@
 
         .contact-item {
             padding: 1.5rem;
-            background: var(--color-charcoal);
+            background: #FFFFFF;
             border-radius: 8px;
-            border: 1px solid rgba(0, 102, 255, 0.2);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 2px 12px rgba(0, 102, 255, 0.06);
         }
 
         .contact-item-icon {
@@ -566,18 +651,18 @@
 
         .contact-item-label {
             font-size: 0.9rem;
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             margin-bottom: 0.5rem;
         }
 
         .contact-item-value {
-            color: var(--color-electric);
+            color: var(--color-sprint-blue);
             font-size: 1.1rem;
             font-weight: 600;
         }
 
         .contact-item-value a {
-            color: var(--color-electric);
+            color: var(--color-sprint-blue);
             text-decoration: none;
         }
 
@@ -591,11 +676,11 @@
             z-index: 1;
             padding: 2rem 5%;
             text-align: center;
-            border-top: 1px solid rgba(0, 102, 255, 0.2);
+            border-top: 1px solid var(--color-border);
         }
 
         footer p {
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             font-size: 0.9rem;
         }
 
@@ -607,7 +692,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 14, 26, 0.9);
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(4px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -618,14 +704,14 @@
         }
 
         .modal {
-            background: var(--color-charcoal);
-            border: 1px solid rgba(0, 102, 255, 0.4);
+            background: #FFFFFF;
+            border: 1px solid var(--color-border);
             border-radius: 12px;
             padding: 2.5rem;
             max-width: 460px;
             width: 90%;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.15);
         }
 
         .modal-close {
@@ -634,26 +720,26 @@
             right: 1rem;
             background: none;
             border: none;
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             font-size: 1.5rem;
             cursor: pointer;
             line-height: 1;
         }
 
         .modal-close:hover {
-            color: var(--color-white);
+            color: var(--color-text);
         }
 
         .modal h3 {
             font-family: var(--font-display);
             font-size: 1.8rem;
-            color: var(--color-electric);
+            color: var(--color-sprint-blue);
             margin-bottom: 0.5rem;
             letter-spacing: 1px;
         }
 
         .modal p {
-            color: var(--color-silver);
+            color: var(--color-text-secondary);
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
         }
@@ -666,10 +752,10 @@
 
         .modal-form input[type="email"] {
             padding: 0.85rem 1rem;
-            background: var(--color-dark);
-            border: 1px solid rgba(0, 102, 255, 0.3);
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
             border-radius: 4px;
-            color: var(--color-white);
+            color: var(--color-text);
             font-family: var(--font-body);
             font-size: 1rem;
             outline: none;
@@ -677,17 +763,17 @@
         }
 
         .modal-form input[type="email"]:focus {
-            border-color: var(--color-electric);
+            border-color: var(--color-sprint-blue);
         }
 
         .modal-form input[type="email"]::placeholder {
-            color: rgba(168, 178, 209, 0.5);
+            color: rgba(90, 107, 127, 0.5);
         }
 
         .modal-form button {
             padding: 0.85rem 1.5rem;
             background: var(--color-sprint-blue);
-            color: var(--color-white);
+            color: #FFFFFF;
             border: 2px solid var(--color-sprint-blue);
             border-radius: 4px;
             font-family: var(--font-body);
@@ -718,7 +804,7 @@
         }
 
         .modal-message.error {
-            color: #ff4444;
+            color: #E53935;
         }
 
         /* Mobile Responsive */
@@ -769,6 +855,7 @@
             <a onclick="scrollToSection('hero')">Home</a>
             <a onclick="scrollToSection('use-cases')">Use Cases</a>
             <a onclick="scrollToSection('about')">About</a>
+            <a onclick="scrollToSection('team')">Team</a>
             <a onclick="scrollToSection('contact')" class="cta-button">Contact</a>
         </nav>
     </header>
@@ -819,7 +906,7 @@
     </section>
 
     <!-- Use Cases Section -->
-    <section id="use-cases">
+    <section id="use-cases" style="background: var(--color-bg-alt);">
         <div class="section-header">
             <h2 class="section-title">
                 <span class="highlight">4 PROVEN</span> USE CASES
@@ -966,7 +1053,7 @@
                 </div>
             </div>
             <div style="margin-top: 2rem;">
-                <a onclick="scrollToSection('use-cases')" class="cta-button" style="display: inline-block; background: var(--color-dark); border-color: var(--color-dark);">
+                <a onclick="scrollToSection('use-cases')" class="cta-button" style="display: inline-block; background: #FFFFFF; border-color: #FFFFFF; color: var(--color-sprint-blue);">
                     Download Detailed Business Cases &rarr;
                 </a>
             </div>
@@ -1028,6 +1115,38 @@
                         <p>We handle infrastructure, maintenance, and support</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="highlight">MEET THE</span> TEAM
+            </h2>
+            <p class="section-subtitle">
+                The people behind Sprint AI&mdash;combining business strategy and technical expertise to deliver results.
+            </p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">&#128100;</div>
+                <h3 class="team-name">TIM PAUWELS</h3>
+                <div class="team-role">Founder & CEO</div>
+                <p class="team-bio">
+                    MBA graduate from Vlerick Business School with a passion for turning AI into measurable business impact. Tim has led the delivery of 25+ enterprise AI applications across industries and geographies, consistently achieving &gt;100% IRR for clients.
+                </p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar">&#128100;</div>
+                <h3 class="team-name">JEAN-PIERRE CERA</h3>
+                <div class="team-role">Co-Founder & CTO</div>
+                <p class="team-bio">
+                    Seasoned technology leader with deep expertise in AI, cloud architecture, and enterprise systems. Jean-Pierre drives the technical vision at Sprint AI, ensuring every solution is robust, scalable, and delivered on time.
+                </p>
             </div>
         </div>
     </section>
