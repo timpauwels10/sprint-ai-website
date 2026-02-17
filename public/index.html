@@ -78,20 +78,13 @@
         }
 
         .logo {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            letter-spacing: 2px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
         }
 
-        .logo-sprint {
-            color: var(--color-text);
-        }
-
-        .logo-ai {
-            color: var(--color-sprint-blue);
+        .logo-img {
+            height: 45px;
+            width: auto;
         }
 
         .nav {
@@ -595,6 +588,19 @@
             line-height: 1.8;
         }
 
+        .team-email {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--color-sprint-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .team-email:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             .team-grid {
                 grid-template-columns: 1fr;
@@ -843,10 +849,9 @@
     <div class="bg-grid"></div>
 
     <header>
-        <div class="logo">
-            <span class="logo-sprint">SPRINT</span>
-            <span class="logo-ai">AI</span>
-        </div>
+        <a class="logo" onclick="scrollToSection('hero')" style="cursor: pointer;">
+            <img src="logo.png" alt="Sprint AI" class="logo-img">
+        </a>
         <nav class="nav">
             <a onclick="scrollToSection('hero')">Home</a>
             <a onclick="scrollToSection('use-cases')">Use Cases</a>
@@ -1143,6 +1148,7 @@
                 <p class="team-bio">
                     MBA-qualified business development professional with a strong track record in building client relationships and identifying growth opportunities. Jean-Pierre connects enterprises with the right AI solutions, ensuring every engagement delivers real value.
                 </p>
+                <a href="mailto:jp.cera@sprint-ai.be" class="team-email">jp.cera@sprint-ai.be</a>
             </div>
         </div>
     </section>
