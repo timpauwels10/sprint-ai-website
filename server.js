@@ -11,10 +11,10 @@ const LEADS_FILE = path.join(__dirname, 'data', 'leads.json');
 const PDFS_DIR = path.join(__dirname, 'public', 'pdfs');
 
 const BC_MAP = {
-  'bc1-production-knowledge': { file: 'bc1-production-knowledge.pdf', name: 'Production Knowledge Assistant' },
-  'bc2-hr-it-helpdesk': { file: 'bc2-hr-it-helpdesk.pdf', name: 'HR & IT Helpdesk Automation' },
-  'bc3-document-processing': { file: 'bc3-document-processing.pdf', name: 'Document Processing Automation' },
-  'bc4-customer-service': { file: 'bc4-customer-service.pdf', name: 'Customer Service Automation' },
+  'bc1-production-knowledge': { file: 'bc1-production-knowledge.pdf', name: 'Production Knowledge Agent' },
+  'bc2-hr-it-helpdesk': { file: 'bc2-hr-it-helpdesk.pdf', name: 'HR & IT Helpdesk Agent' },
+  'bc3-document-processing': { file: 'bc3-document-processing.pdf', name: 'Document Processing Agent' },
+  'bc4-customer-service': { file: 'bc4-customer-service.pdf', name: 'Customer Service Agent' },
 };
 
 // Ensure data directory exists
@@ -60,7 +60,7 @@ app.post('/api/download', async (req, res) => {
         <h2>Here's your business case: ${bc.name}</h2>
         <p>Hi,</p>
         <p>Thank you for your interest in Sprint AI. Please find the <strong>${bc.name}</strong> business case attached.</p>
-        <p>Each of our use cases delivers exceptional ROI with payback periods under 12 months.</p>
+        <p>Each of our AI agent use cases delivers exceptional ROI with payback periods under 12 months.</p>
         <p>Want to discuss how this applies to your company? Reply to this email or book a 30-minute discovery call.</p>
         <br>
         <p>Best regards,<br>Tim Pauwels<br>Sprint AI<br><a href="https://sprint-ai.be">sprint-ai.be</a></p>
